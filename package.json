@@ -1,0 +1,17 @@
+{
+  "name": "daily-habit-bot",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "canvas": "^2.10.1",
+    "dotenv": "^16.0.2",
+    "telegraf": "^4.9.2"
+  }
+}
