@@ -1,6 +1,6 @@
 const { Telegraf, Markup } = require('telegraf');
 const axios = require('axios');
-const generateJpeg = require('./aindex.js')
+const generateJpeg = require('./statistics.js')
 require('dotenv').config()
 
 
@@ -39,7 +39,7 @@ bot.help((ctx) => ctx.reply('Send me a sticker'));
 bot.on('sticker', (ctx) => ctx.reply('👍'));
 bot.on('contact', (ctx) => ctx.reply(ctx.message.contact))
 bot.hears('hi', async (ctx) => {
-     axios.post(API_URL, 
+     axios.post(API_URL,
         {
         method: 'getUsers',
       }
@@ -58,14 +58,14 @@ bot.hears('hi', async (ctx) => {
 
 
 // bot.hears('другое',async (ctx) => {
-//     axios.post(API_URL, 
+//     axios.post(API_URL,
 //        {
 //        method: 'getUsers',
 //      })
 
 
 bot.hears('я сделяль с:', async (ctx) => {
-    axios.post(API_URL, 
+    axios.post(API_URL,
        {
        method: 'getHabits',
        chatId: ctx.message.chat.id,
@@ -73,7 +73,7 @@ bot.hears('я сделяль с:', async (ctx) => {
      ).then(response=>{
        console.log(response.data)
        console.log('???????????????????????????????////',JSON.stringify(response.data))
-       
+
        let habits = response.data
         let buttons =[]
        habits.forEach(elem => {
@@ -91,8 +91,8 @@ bot.hears('я сделяль с:', async (ctx) => {
 
 });
 bot.action(/action-\d+/,async (ctx) => {
-    
-    
+
+
     const actionId=+ctx.match[0].replace('action-','')
     const chatId= ctx.update.callback_query.message.chat.id
     const messageId = ctx.update.callback_query.message.message_id
@@ -112,21 +112,21 @@ bot.action(/action-\d+/,async (ctx) => {
     })
     let habits = responseList.data
     let buttons =[]
-    
+
     habits.forEach(elem => {
         console.log(elem.title)
         buttons.push([{text:elem.title,callback_data:`action-${elem.id}`}])
     });
-    
+
     bot.telegram.editMessageReplyMarkup(chatId, messageId, messageId, {inline_keyboard: buttons});
 
 //-----------
 
     return ctx.reply('Супер!')
-    
+
 })
 bot.hears('статистика', async (ctx) => {
-    const response = await axios.post(API_URL, 
+    const response = await axios.post(API_URL,
        {
        method: 'getTodayStatistics'
      }
@@ -143,5 +143,5 @@ bot.launch();
 
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'));
-process.once('SIGTERM', () => bot.stop('SIGTERM')); 
+process.once('SIGTERM', () => bot.stop('SIGTERM'));
 
