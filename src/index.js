@@ -28,8 +28,7 @@ bot.start((ctx) =>
       [
         Markup.button.callback('я сделяль с:', 'done'),
         Markup.button.callback('статистика', 'second')
-      ]
-    ]).resize()
+      ]    ]).resize()
   )
 )
 bot.help((ctx) => ctx.reply('Send me a sticker'))
