@@ -8,7 +8,8 @@
     "format:write": "prettier --write .",
     "lint:check": "eslint .",
     "lint:fix": "eslint --fix .",
-    "build": "node ./src/index.js"
+    "build": "webpack --config webpack.config.js",
+    "build-run": "npm run build && node ./dist/main.js"
   },
   "author": "",
   "license": "ISC",
@@ -25,6 +26,9 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-node-externals": "^3.0.0"
   }
 }
