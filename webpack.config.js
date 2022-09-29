@@ -1,10 +1,15 @@
 const path = require('path')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const nodeExternals = require('webpack-node-externals')
+const TerserPlugin = require('terser-webpack-plugin')
 
 module.exports = {
   mode: 'production',
   entry: './src/index.js',
+
+  node: {
+    __dirname: false
+  },
+
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'main.js'
@@ -27,7 +32,12 @@ module.exports = {
     ]
   },
 
-  plugins: [new CleanWebpackPlugin()],
+  plugins: [
+    // new CleanWebpackPlugin(),
+    // new CopyPlugin({
+    //   patterns: [{ from: 'database', to: 'database' }]
+    // })
+  ],
 
   externalsPresets: { node: true },
 
@@ -38,5 +48,14 @@ module.exports = {
     alias: {
       '@': path.join(__dirname, 'src')
     }
+  },
+
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        exclude: /database/
+      })
+    ]
   }
 }
