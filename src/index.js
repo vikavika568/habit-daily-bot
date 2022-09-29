@@ -1,7 +1,9 @@
-const { Telegraf, Markup } = require('telegraf')
-const axios = require('axios')
-const generateJpeg = require('./statistics')
-require('dotenv').config()
+import { Telegraf, Markup } from 'telegraf'
+import axios from 'axios'
+import generateJpeg from './statistics'
+import { config } from 'dotenv'
+
+config()
 
 const bot = new Telegraf(process.env.TOKEN)
 
