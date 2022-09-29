@@ -1,4 +1,4 @@
-const { createCanvas } = require('canvas')
+import { createCanvas } from 'canvas'
 
 function generateJpeg() {
   const WIDTH = 1130
@@ -78,4 +78,4 @@ function generateJpeg() {
   return canvas.toBuffer('image/png')
 }
 
-module.exports = generateJpeg
+export default generateJpeg
